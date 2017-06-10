@@ -36,7 +36,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li class="{{ Request::is('organisations') ? "active" : ""}}"><a href="/organisations">Organisations</a></li>
+                        <li class="{{ Request::is('contacts') ? "active" : ""}}"><a href="/contacts">Contacts</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

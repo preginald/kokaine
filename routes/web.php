@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('/organisations/restore/{id}', 'OrganisationController@restore')->name('organisations.restore');
+    Route::resource('/organisations', 'OrganisationController');
+    Route::resource('/contacts', 'ContactController');
+});
