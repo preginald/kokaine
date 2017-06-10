@@ -17,12 +17,13 @@ use Illuminate\Http\Request;
 /*     return $request->user(); */
 /* }); */
 
+Route::group(['prefix' => 'v2'], function () {
+    Route::post('/user', [
+        'uses' => 'UserController@signup'
+    ]);
 
-Route::post('/user', [
-    'uses' => 'UserController@signup'
-]);
-
-Route::post('/user/signin', [
-    'uses' => 'UserController@signin'
-]);
+    Route::post('/user/signin', [
+        'uses' => 'UserController@signin'
+    ]);
+});
 
