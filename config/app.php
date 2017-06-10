@@ -169,6 +169,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
     ],
 
