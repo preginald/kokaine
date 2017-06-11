@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use JWTAuth;
 use Illuminate\Http\Request;
 use App\Organisation;
 
@@ -15,21 +16,13 @@ class OrganisationController extends Controller
     public function index()
     {
 		// Get all the organisations
-		$organisations =  Organisation::paginate(5);
+		$organisations =  Organisation::all();
 
-		// Get deleted organisations
-		$deleted = Organisation::onlyTrashed()->get();
-        
-        return response()->json([
-                'organisation' => $organisations,
-                    'deleted' => $deleted 
-                ],200);
+        $response = [
+            'organisations' => $organisations
+        ];
 
-		// Return view and pass data
-        return view('organisations.index', [
-			'organisations' => $organisations,
-			'deleted' => $deleted,
-		]);
+        return response()->json($response,200);
 
     }
 
@@ -66,11 +59,7 @@ class OrganisationController extends Controller
         $organisation->phone = $request->phone;
         $organisation->save();
 
-        // Set flash data with success message
-        $request->session()->flash('success', 'The organisation was successfully created!');
-
-        // Redirect to show view with flash data
-        return redirect()->route('organisations.show', $organisation->id);
+        return response()->json(['organisation' => $organisation], 201);
 
     }
 
@@ -82,14 +71,11 @@ class OrganisationController extends Controller
      */
     public function show($id)
     {
-        // Declare variables
-        // $contact = 0;
         // Find record from database
         $organisation = organisation::find($id);
-    
-        // Redirect to show view
-        return view('organisations.show', compact('organisation'));
-        return view('organisations.show', compact('organisation', 'contact'));
+
+        return response()->json(['organisation' => $organisation], 201);
+
     }
 
     /**
@@ -132,12 +118,9 @@ class OrganisationController extends Controller
         $organisation->phone = $request->input('phone');
 
         $organisation->save();
+        
+        return response()->json(['organisation' => $organisation], 201);
 
-        // Set flash data with success message
-        $request->session()->flash('success', 'The organisation was successfully updated!');
-
-        // Redirect to show view with flash data
-        return redirect()->route('organisations.show', $organisation->id);
     }
 
     /**
@@ -154,11 +137,11 @@ class OrganisationController extends Controller
         // Remove from database
         $organisation->delete();
 
-        // Set flash data with success message
-        $request->session()->flash('success', 'The organisation was successfully deleted!');
+        return response()->json([
+            'organisation' => $organisation,
+            'message' => 'deleted successfully'
+        ], 201);
 
-        // Redirect to index view
-        return redirect()->route('organisations.index');
     }
 	
     /**
