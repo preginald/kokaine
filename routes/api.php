@@ -26,6 +26,9 @@ Route::post('/user/signin', [
 ]);
 
 Route::group(['middleware' => 'auth.jwt'], function (){
+    Route::patch('/organisations/attachContact/{id}', 'OrganisationController@attachContact');
     Route::resource('/organisations', 'OrganisationController');
+
+    Route::patch('/contacts/attachOrganisation/{id}', 'ContactController@attachOrganisation');
     Route::resource('/contacts', 'ContactController');
 });

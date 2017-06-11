@@ -16,7 +16,7 @@ class ContactController extends Controller
     public function index()
     {
 		// Get all the contacts
-		$contacts =Contact::all();
+		$contacts = Contact::with('organisations')->get();
 
         $response = [
             'contacts' => $contacts
@@ -127,6 +127,27 @@ class ContactController extends Controller
         return response()->json(['contact' => $contact], 201);
     }
 
+    /**
+     * Attach the Organisation to Contact. 
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function attachOrganisation(Request $request, $id)
+    {
+        // Validate form input data
+        $this->validate($request, [
+            'organisation' => 'required'
+        ]);
+
+        // Find record from database and store as a var
+        $contact= Contact::find($id);
+
+        $contact->organisations()->attach($request->input('organisation'));
+        
+        return response()->json(['contact' => $contact], 201);
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
