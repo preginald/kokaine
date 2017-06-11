@@ -27,4 +27,5 @@ Route::post('/user/signin', [
 
 Route::group(['middleware' => 'auth.jwt'], function (){
     Route::resource('/organisations', 'OrganisationController');
+    Route::resource('/contacts', 'ContactController');
 });
