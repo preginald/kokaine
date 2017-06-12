@@ -16,7 +16,7 @@ class OrganisationController extends Controller
     public function index()
     {
 		// Get all the organisations
-		$organisations =  Organisation::with('contacts')->get();
+		$organisations =  Organisation::with('contacts', 'assets')->get();
 
         $response = [
             'organisations' => $organisations
@@ -140,6 +140,27 @@ class OrganisationController extends Controller
         $organisation = organisation::find($id);
 
         $organisation->contacts()->attach($request->input('contact'));
+        
+        return response()->json(['organisation' => $organisation], 201);
+    }
+    
+    /**
+     * Attach the Asset to Organisation.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function attachAsset(Request $request, $id)
+    {
+        // Validate form input data
+        $this->validate($request, [
+            'asset' => 'required'
+        ]);
+
+        // Find record from database and store as a var
+        $organisation = organisation::find($id);
+
+        $organisation->assets()->attach($request->input('asset'));
         
         return response()->json(['organisation' => $organisation], 201);
     }

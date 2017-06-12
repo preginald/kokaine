@@ -15,4 +15,9 @@ class Organisation extends Model
     {
         return $this->belongsToMany('App\Contact');
     }
+
+    public function assets()
+    {
+        return $this->hasMany('App\Asset');
+    }
 }
