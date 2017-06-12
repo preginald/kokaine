@@ -16,6 +16,7 @@ class AssetsTableSeeder extends Seeder
 
         $assets = [
             ['organisation_id' => '1', 'name' => 'www.kokaine.com', 'description' => 'Addictive Management Suite for Digital Developers!', 'created_at' => $now, 'updated_at' => $now],
+            ['organisation_id' => '1', 'name' => 'www.devsupport.com.au', 'description' => 'This is the homepage for Digital Development Agency of Australia', 'created_at' => $now, 'updated_at' => $now],
             ['organisation_id' => '2', 'name' => 'www.kingofpop.com', 'description' => 'Discover the king of pop music.', 'created_at' => $now, 'updated_at' => $now],
             ['organisation_id' => '3', 'name' => 'www.warnerbro.com', 'description' => 'Where Hollywood stars are made.', 'created_at' => $now, 'updated_at' => $now],
             ['organisation_id' => '4', 'name' => 'www.whitehouse.gov', 'description' => 'This is where the president lives.', 'created_at' => $now, 'updated_at' => $now],

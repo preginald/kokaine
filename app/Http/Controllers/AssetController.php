@@ -16,7 +16,7 @@ class AssetController extends Controller
     public function index()
     {
 		// Get all the assets
-		$assets = Asset::with('organisations')->get();
+		$assets = Asset::with('organisation', 'pages')->get();
 
         $response = [
             'assets' => $assets
@@ -141,7 +141,7 @@ class AssetController extends Controller
         
         return response()->json(['asset' => $asset], 201);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *

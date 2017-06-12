@@ -174,7 +174,7 @@ class OrganisationController extends Controller
     public function destroy(Request $request, $id)
     {
         // Find record from database and store as a var
-        $organisation = organisation::find($id);
+        $organisation = Organisation::find($id);
 
         // Remove from database
         $organisation->delete();
@@ -195,7 +195,7 @@ class OrganisationController extends Controller
     public function restore(Request $request, $id)
     {
         // Find record from database and store as a var
-        $organisation = organisation::onlyTrashed()->where('id', $id)->restore();
+        $organisation = Organisation::onlyTrashed()->where('id', $id)->restore();
 
         // Restore to database
         // $organisation->restore();

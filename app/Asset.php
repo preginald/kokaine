@@ -11,8 +11,8 @@ class Asset extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function organisations()
+    public function organisation()
     {
-        return $this->belongs('App\Organisation');
+        return $this->belongsTo('App\Organisation');
     }
 }

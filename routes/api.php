@@ -35,4 +35,6 @@ Route::group(['middleware' => 'auth.jwt'], function (){
 
     Route::patch('/assets/attachOrganisation/{id}', 'AssetController@attachOrganisation');
     Route::resource('/assets', 'AssetController');
+
+    Route::resource('/pages', 'PageController');
 });
