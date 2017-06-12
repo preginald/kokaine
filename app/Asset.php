@@ -15,4 +15,8 @@ class Asset extends Model
     {
         return $this->belongsTo('App\Organisation');
     }
+
+    public function pages() {
+        return $this->hasMany('App\Page');
+    }
 }
